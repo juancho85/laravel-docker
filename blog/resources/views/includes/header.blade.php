@@ -1,4 +1,4 @@
-<header>
+<header class="main-nav">
     <nav>
         <ul>
             <li><a href="{{ route('blog.index') }}">Blog</a></li>
