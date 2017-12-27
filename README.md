@@ -24,4 +24,6 @@ git submodule add https://github.com/Laradock/laradock.git
 
 In this example we’ll see how to run NGINX (web server) and MySQL (database engine) to host a PHP Web Scripts:
 
-docker-compose up -d nginx mysql
+`
+docker-compose up nginx mysql
+`
