@@ -1,3 +1,22 @@
+#init the laravel project
+https://laravel.com/docs/5.5/installation
+
+ download the Laravel installer using Composer:
+ 
+`composer global require "laravel/installer"`
+
+Once installed, the laravel new command will create a fresh Laravel installation in the directory you specify. For instance, laravel new blog will create a directory named blog containing a fresh Laravel installation with all of Laravel's dependencies already installed:
+
+`laravel new blog`
+
+set the environment variables needed in the laradock/.env file
+
+* APPLICATION=../blog/
+* DB_HOST=mysql
+* MYSQL_USER=blog_user
+* MYSQL_PASSWORD=db_pass
+* MYSQL_DATABASE=blog_db
+
 #Laravel with laradock
 
 http://laradock.io/getting-started/#Usage
