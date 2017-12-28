@@ -23,6 +23,24 @@ class CategoryController extends Controller
         if($category->save()) {
             return Response::json(['message' => 'Category created'], 200);
         }
-        return Response::json(['message' => 'Error during creattion'], 404);
+        return Response::json(['message' => 'Error during creation'], 404);
+    }
+
+    public function postUpdateCategory(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|unique:categories'
+        ]);
+
+        $category = Category::find($request['category_id']);
+
+        if(!$category){
+            return Response::json(['message' => 'Category not found.'], 404);
+        }
+        $category->name = $request['name'];
+
+        if($category->update()) {
+            return Response::json(['message' => 'Category updated.', 'new_name' => $category->name], 200);
+        }
+        return Response::json(['message' => 'Error during update'], 404);
     }
 }
