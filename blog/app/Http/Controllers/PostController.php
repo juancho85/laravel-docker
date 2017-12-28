@@ -23,11 +23,12 @@ class PostController extends Controller
     }
 
     public function getSinglePost($post_id, $end = 'frontend') {
-        //fetch the post
-        return view($end . '.blog.single');
+        $post = Post::find($post_id);
+        if(!$post) {
+            return redirect()->route('blog.index')->with(['fail' => 'Post not found!']);
+        }
+        return view($end . '.blog.single', ['post' => $post]);
     }
-
-
 
     public function getCreatePost() {
         return view('admin.blog.create_post');
@@ -49,6 +50,46 @@ class PostController extends Controller
         //TODO: attaching categories
 
         return redirect()->route('admin.index')->with(['success' => 'Post successfully created!']);
+    }
+
+    public function getUpdatePost($post_id) {
+        $post = Post::find($post_id);
+        if(!$post) {
+            return redirect()->route('blog.index')->with(['fail' => 'Post not found!']);
+        }
+        //TODO: find categories
+        return view('admin.blog.edit_post', ['post' => $post]);
+    }
+
+    public function postUpdatePost(Request $request) {
+        $this->validate($request, [
+            'title' => 'required|max:120',
+            'author' => 'required|max:80',
+            'body' => 'required',
+        ]);
+
+        $post = new Post();
+        $post->title = $request['title'];
+        $post->author = $request['author'];
+        $post->body = $request['body'];
+
+        $post = Post::find($request['post_id']);
+        $post->title = $request['title'];
+        $post->author = $request['author'];
+        $post->body = $request['body'];
+        //TODO handle fail case
+        $post->update();
+        //TODO: attaching categories
+        return redirect()->route('admin.index')->with(['success' => 'Post successfully updated!']);
+    }
+
+    public function getDeletePost($post_id) {
+        $post = Post::find($post_id);
+        if(!$post) {
+            return redirect()->route('blog.index')->with(['fail' => 'Post not found!']);
+        }
+        $post->delete();
+        return redirect()->route('admin.index')->with(['success' => 'Post successfully deleted!']);
     }
 
     private function shortenedText($text, $word_count) {

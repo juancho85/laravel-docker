@@ -21,7 +21,7 @@ Route::get('/blog', [
     'as' => 'blog.index'
 ]);
 
-Route::get('/blog/{post_id}', [
+Route::get('/blog/{post_id}&{end}', [
     'uses' => 'PostController@getsinglePost',
     'as' => 'blog.single'
 ]);
@@ -50,6 +50,11 @@ Route::group([
         'as' => 'admin.blog.index'
     ]);
 
+    Route::get('/blog/post/{post_id}&{end}', [
+        'uses' => 'PostController@getSinglePost',
+        'as' => 'admin.blog.single'
+    ]);
+
     Route::get('/blog/posts/create', [
         'uses' => 'PostController@getCreatePost',
         'as' => 'admin.blog.create_post'
@@ -58,6 +63,21 @@ Route::group([
     Route::post('/blog/post/create', [
         'uses' => 'PostController@postCreatePost',
         'as' => 'admin.blog.post.create'
+    ]);
+
+    Route::get('/blog/post/{post_id}/edit', [
+        'uses' => 'PostController@getUpdatePost',
+        'as' => 'admin.blog.post.edit'
+    ]);
+
+    Route::post('/blog/post/update', [
+        'uses' => 'PostController@postUpdatePost',
+        'as' => 'admin.blog.post.update'
+    ]);
+
+    Route::get('/blog/post/{post_id}/delete', [
+        'uses' => 'PostController@getDeletePost',
+        'as' => 'admin.blog.post.delete'
     ]);
 
 
