@@ -12,32 +12,35 @@
                 <nav>
                     <ul>
                         <li><a href="{{ route('admin.blog.create_post') }}" class="btn">New Post</a></li>
-                        <li><a href="" class="btn">Show all posts</a></li>
+                        <li><a href="{{ route('admin.blog.index') }}" class="btn">Show all posts</a></li>
                     </ul>
                 </nav>
             </header>
             <section>
                 <ul>
-                    {{--if no posts--}}
-                    <li>No Posts</li>
-                    {{--if posts--}}
-                    <li>
-                        <article>
-                            <div class="post-info">
-                                <h3>Post title</h3>
-                                <span class="info">Post Author | Date</span>
-                            </div>
-                        </article>
-                        <div class="edit">
-                            <nav>
-                                <ul>
-                                    <li><a href="">View Post</a></li>
-                                    <li><a href="">Edit</a></li>
-                                    <li><a href="" class="danger">Delete</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </li>
+                    @if(count($posts) == 0 )
+                        <li>No Posts</li>
+                    @else
+                        @foreach($posts as $post)
+                            <li>
+                                <article>
+                                    <div class="post-info">
+                                        <h3>{{ $post->title }}</h3>
+                                        <span class="info">{{ $post->author }} | {{ $post->created_at }}</span>
+                                    </div>
+                                </article>
+                                <div class="edit">
+                                    <nav>
+                                        <ul>
+                                            <li><a href="">View Post</a></li>
+                                            <li><a href="">Edit</a></li>
+                                            <li><a href="" class="danger">Delete</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </li>
+                         @endforeach
+                    @endif
                 </ul>
             </section>
         </div>

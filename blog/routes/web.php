@@ -45,6 +45,11 @@ Route::group([
         'as' => 'admin.index'
     ]);
 
+    Route::get('/blog/posts', [
+        'uses' => 'PostController@getPostsIndex',
+        'as' => 'admin.blog.index'
+    ]);
+
     Route::get('/blog/posts/create', [
         'uses' => 'PostController@getCreatePost',
         'as' => 'admin.blog.create_post'
@@ -54,5 +59,8 @@ Route::group([
         'uses' => 'PostController@postCreatePost',
         'as' => 'admin.blog.post.create'
     ]);
+
+
+
 
 });
