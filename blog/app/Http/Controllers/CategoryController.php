@@ -43,4 +43,10 @@ class CategoryController extends Controller
         }
         return Response::json(['message' => 'Error during update'], 404);
     }
+
+    public function getDeleteCategory($category_id) {
+        $category = Category::find($category_id);
+        $category->delete();
+        return Response::json(['message' => 'Category deleted'], 200);
+    }
 }
