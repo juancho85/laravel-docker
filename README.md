@@ -17,6 +17,16 @@ set the environment variables needed in the laradock/.env file
 * MYSQL_PASSWORD=db_pass
 * MYSQL_DATABASE=blog_db
 
+#Artisan reminders
+
+Creating a model with a migration file:
+
+`php artisan make:model Author -m`
+
+run the migrations:
+
+`php artisan migrate`
+
 #Laravel with laradock
 
 http://laradock.io/getting-started/#Usage
