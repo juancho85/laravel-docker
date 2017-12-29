@@ -27,6 +27,10 @@ run the migrations:
 
 `php artisan migrate`
 
+generate events & listeners (after setting them on EventServiceProvider):
+
+`php artisan event:generate`
+
 #Laravel with laradock
 
 http://laradock.io/getting-started/#Usage
