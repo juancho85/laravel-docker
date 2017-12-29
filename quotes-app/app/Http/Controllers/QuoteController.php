@@ -27,15 +27,18 @@ class QuoteController extends Controller
             [
             'quote' => 'required|max:500',
             'author' => 'required|max:60|alpha',
+            'email' => 'required|email',
         ]);
 
         $authorText = ucfirst($request['author']);
         $quoteText = $request['quote'];
+        $emailText = $request['email'];
 
         $author = Author::where('name', $authorText)->first();
         if(!$author) {
             $author = new Author();
             $author->name = $authorText;
+            $author->email = $emailText;
             $author->save();
         }
 
