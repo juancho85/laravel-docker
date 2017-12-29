@@ -10,6 +10,11 @@
 @endsection
 
 @section('content')
+    @if(!empty(Request::segment(1)))
+        <section class="filter-bar">
+            a filter has been set! <a href="{{ route('index') }}">Show all quotes</a>
+        </section>
+    @endif
     @if(count($errors) > 0)
         <section class="info-box fail">
             @foreach($errors->all() as $error)
@@ -30,7 +35,7 @@
                     <a href="{{ route('delete', ['quote_id' => $quotes[$i]->id]) }}">x</a>
                 </div>
                 {{ $quotes[$i]->quote }}
-                <div class="info">Created by <a href="#">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }}</div>
+                <div class="info">Created by <a href="{{ route('index', ['author' => $quotes[$i]->author->name]) }}">{{ $quotes[$i]->author->name }}</a> on {{ $quotes[$i]->created_at }}</div>
             </article>
         @endfor
         <div class="pagination">
