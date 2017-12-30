@@ -40,12 +40,14 @@ Route::post('/admin/login', [
     'uses' => 'AdminController@postLogin',
     'as' => 'admin.login'
 ]);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/admin/dashboard', [
+        'uses' => 'AdminController@getDashboard',
+        'middleware' => 'auth',
+        'as' => 'admin.dashboard'
+    ]);
+});
 
-Route::get('/admin/dashboard', [
-    'uses' => 'AdminController@getDashboard',
-    'middleware' => 'auth',
-    'as' => 'admin.dashboard'
-]);
 
 Route::get('/admin/logout', [
     'uses' => 'AdminController@getLogout',
