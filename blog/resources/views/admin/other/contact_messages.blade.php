@@ -12,7 +12,7 @@
                 No messages
             @endif
             @foreach($contact_messages as $contact_message)
-                <article data-message="{{ $contact_message->body }}" data-message="{{ $contact_message->id }}" class="contact-message">
+                <article data-message="{{ $contact_message->body }}" data-id="{{ $contact_message->id }}" class="contact-message">
                     <div class="message-info">
                         <h3>{{ $contact_message->subject }}</h3>
                         <span class="info">Sender: {{ $contact_message->sender }} | {{ $contact_message->created_at }}</span>
@@ -38,6 +38,9 @@
                 @endif
             </section>
         @endif
+    </div>
+    <div class="modal" id="contact-message-info">
+        <button class="btn" id="modal-close">Close</button>
     </div>
 @endsection
 
