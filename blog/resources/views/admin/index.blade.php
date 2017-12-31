@@ -60,20 +60,20 @@
                     @endif
                     @foreach($contact_messages as $contact_message)
                             <li>
-                                <article data-message="{{ $contact_message->body }}" data-message="{{ $contact_message->id }}">
+                                <article data-message="{{ $contact_message->body }}" data-id="{{ $contact_message->id }}" class="contact-message">
                                     <div class="message-info">
                                         <h3>{{ $contact_message->subject }}</h3>
                                         <span class="info">Sender: {{ $contact_message->sender }} | {{ $contact_message->created_at }}</span>
                                     </div>
+                                    <div class="edit">
+                                        <nav>
+                                            <ul>
+                                                <li><a href="">View</a></li>
+                                                <li><a href="" class="danger">Delete</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </article>
-                                <div class="edit">
-                                    <nav>
-                                        <ul>
-                                            <li><a href="">View</a></li>
-                                            <li><a href="" class="danger">Delete</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
                             </li>
                     @endforeach
 
